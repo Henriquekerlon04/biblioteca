@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Escolar</title>
+</head>
+<body>
+   
+    <div class="corpo">
+        <!-- Navbar -->
+        <nav>
+            <div class="menu-sid">
+                <i class="bi bi-list sidebar-toggle"></i>
+            </div><!-- menu-sid -->
+            <div class="div-logo-name">
+                <span class="logo_name">Biblioteca</span>
+            </div><!--logo-name-->
+            
+            <div class="menu-items">
+                <ul class="nav-links">
+                    <li><a href="Dahsboard.html">
+                            <i class="bi bi-house"></i>
+                            <span class="link-name">Dahsboard</span>
+                        </a></li>
+                    <li><a href="Alunos.html">
+                            <i class="bi bi-person-vcard"></i>
+                                <span class="link-name">Alunos</span>
+                            </a></li>
+                    <li><a href="Funcionarios.html">
+                            <i class="bi bi-person-vcard"></i>
+                                <span class="link-name">Funcionários</span>
+                            </a></li>
+                    <li><a href="Editoras.html">
+                            <i class="bi bi-clipboard-data"></i>
+                            <span class="link-name">Editoras</span>
+                        </a></li>
+                    <li><a href="Livros.html">
+                            <i class="bi bi-clipboard-data"></i>
+                            <span class="link-name">Livros</span>
+                        </a></li>
+                    <li><a href="Emprestimos.html">
+                        <i class="bi bi-person-workspace"></i>
+                            <span class="link-name">Empréstimos</span>
+                        </a></li>
+                </ul><!--nav-links-->
+            </div><!--menu-items-->
+        </nav> 
+        <section class="dashboard">
+            <div class="top">
+                <i class="bi bi-list sidebar-toggle2"></i>
+                <div class="logo-name">
+                    <h1 class="seduc-logo">Biblioteca Escolar</h1>
+                </div><!--logo-name-->
+                
+                <div class="actionimg">
+                    <div class="profile" onclick="menuToggle();">
+                        <img src="img/avatar5.png" alt="">
+                    </div>
+                    <div class="menu">
+                        <h3>
+                          Antônio Carlos
+                        </h3>
+                        <ul>
+                            <li>
+                                <span class="material-icons icons-size"><i class="bi bi-person"></i></span>
+                                <a href="#">Perfil</a>
+                            </li>
+                            <li>
+                                <span class="material-icons icons-size"><i class="bi bi-question-circle"></i></span>
+                                <a href="#">Ajuda</a>
+                            </li>
+                            <li>
+                                <span class="material-icons icons-size"><i class="bi bi-gear"></i></span>
+                                <a href="#">Configurações</a>
+                            </li>
+                            <li>
+                                <span class="material-icons icons-size"><i class="bi bi-box-arrow-right"></i></span>
+                                <a href="index.html">Saida</a>
+                            </li>
+                        </ul>
+                    </div><!--menu-->
+                </div><!--actionimg-->
+              </div><!--top-->
+
+  <div class="corpo-da-pag">
+    <div class="scroll">
+      <div class="activity">
+        <div class="overview">
+          <div class="title">
+            <i class="bi bi-house"></i> 
+            <span class="text">Dahsboard</span>
+          </div><!--title-->                      
+      
+		<!-- Main content -->
+    <section class="content container-fluid">
+        <div class="row">
+          <!-- ./col -->
+          <div class="col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3 id="number-emprestimo">0</h3>
+                  <p>Empréstimos</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+              <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3 id="number-alunos">0</h3>
+                  <p>Alunos</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+              <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3 id="number-editoras">0</h3>
+                  <p>Editoras</p>
+              </div>
+              <div class="icon">
+                <i class="ion-home"></i>
+              </div>
+            </div>
+          </div>
+			
+			    <div class="col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-yellow">
+              <div class="inner">
+                <h3 id="number-funcionario">0</h3>
+                  <p>Funcionários</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+            </div>
+          </div>
+			
+			    <div class="col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+              <div class="inner">
+                <h3 id="number-livros">0</h3>
+                  <p>Livros</p>
+              </div>
+              <div class="icon">
+                <i class="ion-ios-book"></i>
+              </div>
+            </div>
+          </div>   
+        </div> <!--row-->
+      </section> <!--container-fluid-->
+     
+                        
+          </div><!--activity-->
+        </div><!--scroll-->
+      </div><!--corpo-da-pag-->
+    </section><!--dashboard-->
+  </div> <!--corpo-->
+</body>
+</html>
