@@ -12,28 +12,28 @@ const closeModal = () => {
     document.getElementById('modal').classList.remove('active')
 }
 
-const getLocalStorage = () => JSON.parse(localStorage.getItem('db_livro')) ?? []
-const setLocalStorage = (dbLivro) => localStorage.setItem("db_livro", JSON.stringify(dbLivro))
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_emprestimo')) ?? []
+const setLocalStorage = (dbEmprestimo) => localStorage.setItem("db_emprestimo", JSON.stringify(dbEmprestimo))
 
 // CRUD - create read update delete
-const deleteLivro = (index) => {
-    const dbLivro = readLivro()
-    dbLivro.splice(index, 1)
-    setLocalStorage(dbLivro)
+const deleteEmprestimo = (index) => {
+    const dbEmprestimo = readEmprestimo()
+    dbEmprestimo.splice(index, 1)
+    setLocalStorage(dbEmprestimo)
 }
 
-const updateLivro = (index, livro) => {
-    const dbLivro = readLivro()
-    dbLivro[index] = livro
-    setLocalStorage(dbLivro)
+const updateEmprestimo = (index, emprestimo) => {
+    const dbEmprestimo = readEmprestimo()
+    dbEmprestimo[index] = emprestimo
+    setLocalStorage(dbEmprestimo)
 }
 
-const readLivro = () => getLocalStorage()
+const readEmprestimo = () => getLocalStorage()
 
-const createLivro = (livro) => {
-    const dbLivro = getLocalStorage()
-    dbLivro.push (livro)
-    setLocalStorage(dbLivro)
+const createEmprestimo = (emprestimo) => {
+    const dbEmprestimo = getLocalStorage()
+    dbEmprestimo.push (emprestimo)
+    setLocalStorage(dbEmprestimo)
 }
 
 const isValidFields = () => {
@@ -48,26 +48,25 @@ const clearFields = () => {
 }
 
 //Campos para serem salvos
-const saveLivro = () => {
+const saveEmprestimo = () => {
     debugger
     if (isValidFields()) {
-        const livro = {
+        const emprestimo = {
             codigo: document.getElementById('codigo').value,
+            tipo: document.getElementById('tipo').value,
             nome: document.getElementById('nome').value,
-            ano: document.getElementById('ano').value,
-            categoria: document.getElementById('categoria').value,
-            editora: document.getElementById('editora').value,
-            isbn: document.getElementById('isbn').value,
-            autor: document.getElementById('autor').value
-
+            livro: document.getElementById('livro').value,
+            dtemprestimo: document.getElementById('dtemprestimo').value,
+            dtdevolucao: document.getElementById('dtdevolucao').value
+           
         }
         const index = document.getElementById('nome').dataset.index
         if (index == 'new') {
-            createLivro(livro)
+            createEmprestimo(emprestimo)
             updateTable()
             closeModal()
         } else {
-            updateLivro(index, livro)
+            updateEmprestimo(index, emprestimo)
             updateTable()
             closeModal()
         }
@@ -75,50 +74,48 @@ const saveLivro = () => {
 }
 
 //Tabela de Apresentação
-const createRow = (livro, index) => {
+const createRow = (emprestimo, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
-        <td>${livro.codigo}</td>
-        <td>${livro.nome}</td>
-        <td>${livro.categoria}</td>
-        <td>${livro.editora}</td>
-        <td>${livro.autor}</td>
+        <td>${emprestimo.codigo}</td>
+        <td>${emprestimo.nome}</td>
+        <td>${emprestimo.livro}</td>
+        <td>${emprestimo.dtemprestimo}</td>
+        <td>${emprestimo.dtdevolucao}</td>
       
         <td>
             <button type="button" class="button green" id="edit-${index}">Editar</button>
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
         </td>
     `
-    document.querySelector('#tableLivro>tbody').appendChild(newRow)
+    document.querySelector('#tableEmprestimo>tbody').appendChild(newRow)
 }
 
 const clearTable = () => {
-    const rows = document.querySelectorAll('#tableLivro>tbody tr')
+    const rows = document.querySelectorAll('#tableEmprestimo>tbody tr')
     rows.forEach(row => row.parentNode.removeChild(row))
 }
 
 const updateTable = () => {
-    const dbLivro = readLivro()
+    const dbEmprestimo = readEmprestimo()
     clearTable()
-    dbLivro.forEach(createRow)
+    dbEmprestimo.forEach(createRow)
 }
 
 //Apresentação tabela modal
-const fillFields = (livro) => {
-    document.getElementById('codigo').value = livro.codigo
-    document.getElementById('nome').value = livro.nome
-    document.getElementById('ano').value = livro.ano
-    document.getElementById('categoria').value = livro.categoria
-    document.getElementById('editora').value = livro.editora 
-    document.getElementById('isbn').value = livro.isbn 
-    document.getElementById('autor').value = livro.autor 
-    document.getElementById('nome').dataset.index = livro.index
+const fillFields = (emprestimo) => {
+    document.getElementById('codigo').value = emprestimo.codigo
+    document.getElementById('tipo').value = emprestimo.tipo
+    document.getElementById('nome').value = emprestimo.nome
+    document.getElementById('livro').value = emprestimo.livro
+    document.getElementById('dtemprestimo').value = emprestimo.editora 
+    document.getElementById('dtdevolucao').value = emprestimo.isbn 
 }
 
-const editLivro = (index) => {
-    const livro = readLivro()[index]
-    livro.index = index
-    fillFields(livro)
+const editEmprestimo = (index) => {
+    const emprestimo = readEmprestimo()[index]
+    emprestimo.index = index
+    fillFields(emprestimo)
     openModal()
 }
 
@@ -128,17 +125,17 @@ const editDelete = (event) => {
         const [action, index] = event.target.id.split('-')
 
         if (action == 'edit') {
-            editLivro(index)
+            editEmprestimo(index)
         } else {
-            const livro = readLivro()[index]
+            const emprestimo = readEmprestimo()[index]
             let avisoDelete = document.querySelector('#avisoDelete')
 
-            avisoDelete.textContent = `Deseja realmente excluir o livro ${livro.nome}`
+            avisoDelete.textContent = `Deseja realmente excluir o emprestimo ${emprestimo.nome}`
             openModal2()
 
         // APAGAR O REGISTRO
             document.getElementById('apagar').addEventListener('click', () => {
-                deleteLivro(index)
+                deleteEmprestimo(index)
                 updateTable()
                 closeModal2()
             })
@@ -149,7 +146,7 @@ const editDelete = (event) => {
 updateTable()
 
 // Eventos
-document.getElementById('cadastrarLivro')
+document.getElementById('cadastrarEmprestimo')
     .addEventListener('click', openModal)
 
 document.getElementById('modalClose')
@@ -160,9 +157,9 @@ document.getElementById('modalClose2')
     .addEventListener('click', closeModal2)
 
 document.getElementById('salvar')
-    .addEventListener('click', saveLivro)
+    .addEventListener('click', saveEmprestimo)
 
-document.querySelector('#tableLivro>tbody')
+document.querySelector('#tableEmprestimo>tbody')
     .addEventListener('click', editDelete)
 
 document.getElementById('cancelar')

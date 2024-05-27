@@ -12,28 +12,28 @@ const closeModal = () => {
     document.getElementById('modal').classList.remove('active')
 }
 
-const getLocalStorage = () => JSON.parse(localStorage.getItem('db_livro')) ?? []
-const setLocalStorage = (dbLivro) => localStorage.setItem("db_livro", JSON.stringify(dbLivro))
+const getLocalStorage = () => JSON.parse(localStorage.getItem('db_editora')) ?? []
+const setLocalStorage = (dbEditora) => localStorage.setItem("db_editora", JSON.stringify(dbEditora))
 
 // CRUD - create read update delete
-const deleteLivro = (index) => {
-    const dbLivro = readLivro()
-    dbLivro.splice(index, 1)
-    setLocalStorage(dbLivro)
+const deleteEditora = (index) => {
+    const dbEditora = readEditora()
+    dbEditora.splice(index, 1)
+    setLocalStorage(dbEditora)
 }
 
-const updateLivro = (index, livro) => {
-    const dbLivro = readLivro()
-    dbLivro[index] = livro
-    setLocalStorage(dbLivro)
+const updateEditora = (index, editora) => {
+    const dbEditora = readEditora()
+    dbEditora[index] = editora
+    setLocalStorage(dbEditora)
 }
 
-const readLivro = () => getLocalStorage()
+const readEditora = () => getLocalStorage()
 
-const createLivro = (livro) => {
-    const dbLivro = getLocalStorage()
-    dbLivro.push (livro)
-    setLocalStorage(dbLivro)
+const createEditora = (editora) => {
+    const dbEditora = getLocalStorage()
+    dbEditora.push (editora)
+    setLocalStorage(dbEditora)
 }
 
 const isValidFields = () => {
@@ -48,26 +48,24 @@ const clearFields = () => {
 }
 
 //Campos para serem salvos
-const saveLivro = () => {
+const saveEditora = () => {
     debugger
     if (isValidFields()) {
-        const livro = {
-            codigo: document.getElementById('codigo').value,
+        const editora = {
             nome: document.getElementById('nome').value,
-            ano: document.getElementById('ano').value,
-            categoria: document.getElementById('categoria').value,
-            editora: document.getElementById('editora').value,
-            isbn: document.getElementById('isbn').value,
-            autor: document.getElementById('autor').value
-
+            gerente: document.getElementById('gerente').value,
+            email: document.getElementById('email').value,
+            endereco: document.getElementById('endereco').value,
+            celular: document.getElementById('celular').value,
+            telefone: document.getElementById('telefone').value
         }
         const index = document.getElementById('nome').dataset.index
         if (index == 'new') {
-            createLivro(livro)
+            createEditora(editora)
             updateTable()
             closeModal()
         } else {
-            updateLivro(index, livro)
+            updateEditora(index, editora)
             updateTable()
             closeModal()
         }
@@ -75,50 +73,48 @@ const saveLivro = () => {
 }
 
 //Tabela de Apresentação
-const createRow = (livro, index) => {
+const createRow = (editora, index) => {
     const newRow = document.createElement('tr')
     newRow.innerHTML = `
-        <td>${livro.codigo}</td>
-        <td>${livro.nome}</td>
-        <td>${livro.categoria}</td>
-        <td>${livro.editora}</td>
-        <td>${livro.autor}</td>
-      
+        <td>${editora.nome}</td>
+        <td>${editora.gerente}</td>
+        <td>${editora.email}</td>
+        <td>${editora.celular}</td>
+        <td>${editora.telefone}</td>
         <td>
             <button type="button" class="button green" id="edit-${index}">Editar</button>
             <button type="button" class="button red" id="delete-${index}" >Excluir</button>
         </td>
     `
-    document.querySelector('#tableLivro>tbody').appendChild(newRow)
+    document.querySelector('#tableEditora>tbody').appendChild(newRow)
 }
 
 const clearTable = () => {
-    const rows = document.querySelectorAll('#tableLivro>tbody tr')
+    const rows = document.querySelectorAll('#tableEditora>tbody tr')
     rows.forEach(row => row.parentNode.removeChild(row))
 }
 
 const updateTable = () => {
-    const dbLivro = readLivro()
+    const dbEditora = readEditora()
     clearTable()
-    dbLivro.forEach(createRow)
+    dbEditora.forEach(createRow)
 }
 
-//Apresentação tabela modal
-const fillFields = (livro) => {
-    document.getElementById('codigo').value = livro.codigo
-    document.getElementById('nome').value = livro.nome
-    document.getElementById('ano').value = livro.ano
-    document.getElementById('categoria').value = livro.categoria
-    document.getElementById('editora').value = livro.editora 
-    document.getElementById('isbn').value = livro.isbn 
-    document.getElementById('autor').value = livro.autor 
-    document.getElementById('nome').dataset.index = livro.index
+//Apresentação tabela modal e edição
+const fillFields = (editora) => {
+    document.getElementById('nome').value = editora.nome
+    document.getElementById('gerente').value = editora.gerente
+    document.getElementById('email').value = editora.email
+    document.getElementById('endereco').value = editora.endereco
+    document.getElementById('celular').value = editora.celular
+    document.getElementById('telefone').value = editora.telefone 
+    document.getElementById('nome').dataset.index = editora.index
 }
 
-const editLivro = (index) => {
-    const livro = readLivro()[index]
-    livro.index = index
-    fillFields(livro)
+const editEditora = (index) => {
+    const editora = readEditora()[index]
+    editora.index = index
+    fillFields(editora)
     openModal()
 }
 
@@ -128,17 +124,17 @@ const editDelete = (event) => {
         const [action, index] = event.target.id.split('-')
 
         if (action == 'edit') {
-            editLivro(index)
+            editEditora(index)
         } else {
-            const livro = readLivro()[index]
+            const editora = readEditora()[index]
             let avisoDelete = document.querySelector('#avisoDelete')
 
-            avisoDelete.textContent = `Deseja realmente excluir o livro ${livro.nome}`
+            avisoDelete.textContent = `Deseja realmente excluir o editora ${editora.nome}`
             openModal2()
 
         // APAGAR O REGISTRO
             document.getElementById('apagar').addEventListener('click', () => {
-                deleteLivro(index)
+                deleteEditora(index)
                 updateTable()
                 closeModal2()
             })
@@ -149,7 +145,7 @@ const editDelete = (event) => {
 updateTable()
 
 // Eventos
-document.getElementById('cadastrarLivro')
+document.getElementById('cadastrarEditora')
     .addEventListener('click', openModal)
 
 document.getElementById('modalClose')
@@ -160,9 +156,9 @@ document.getElementById('modalClose2')
     .addEventListener('click', closeModal2)
 
 document.getElementById('salvar')
-    .addEventListener('click', saveLivro)
+    .addEventListener('click', saveEditora)
 
-document.querySelector('#tableLivro>tbody')
+document.querySelector('#tableEditora>tbody')
     .addEventListener('click', editDelete)
 
 document.getElementById('cancelar')
