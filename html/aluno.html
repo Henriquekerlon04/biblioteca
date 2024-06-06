@@ -3,11 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Escolar</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <title>Aluno</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/crud.css">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/css/records.css">
+    <link rel="stylesheet" href="/css/button.css">
 </head>
 <body>
     <div class="corpo">
-      
+
         <nav>
             <div class="menu-sid">
                 <i class="bi bi-list sidebar-toggle"></i>
@@ -15,30 +21,30 @@
             <div class="div-logo-name">
                 <span class="logo_name">Biblioteca</span>
             </div>
-            
+
             <div class="menu-items">
                 <ul class="nav-links">
-                    <li><a href="Dahsboard.html">
+                    <li><a href="dashboard.html">
                             <i class="bi bi-house"></i>
                             <span class="link-name">Dahsboard</span>
                         </a></li>
-                    <li><a href="Alunos.html">
+                    <li><a href="aluno.html">
                             <i class="bi bi-person-vcard"></i>
                                 <span class="link-name">Alunos</span>
                             </a></li>
-                    <li><a href="Funcionarios.html">
+                    <li><a href="funcionario.html">
                             <i class="bi bi-person-vcard"></i>
                                 <span class="link-name">Funcionários</span>
                             </a></li>
-                    <li><a href="Editoras.html">
+                    <li><a href="editora.html">
                             <i class="bi bi-clipboard-data"></i>
                             <span class="link-name">Editoras</span>
                         </a></li>
-                    <li><a href="Livros.html">
+                    <li><a href="livro.html">
                             <i class="bi bi-clipboard-data"></i>
                             <span class="link-name">Livros</span>
                         </a></li>
-                    <li><a href="Emprestimos.html">
+                    <li><a href="emprestimo.html">
                         <i class="bi bi-person-workspace"></i>
                             <span class="link-name">Empréstimos</span>
                         </a></li>
@@ -51,7 +57,7 @@
                 <div class="logo-name">
                     <h1 class="seduc-logo">Biblioteca Escolar</h1>
                 </div>
-                
+
                 <div class="actionimg">
                     <div class="profile" onclick="menuToggle();">
                         <img src="img/avatar5.png" alt="">
@@ -94,10 +100,10 @@
                             <div class="seducSever" style=" white-space: nowrap;">
                                 <li class="breadcrumb-item"><a
                                         style="text-decoration: none !important; color: black; font-size: 12px; margin-left: 2%;"
-                                        href="Dahsboard.html">Biblioteca Escolar</a></li>
+                                        href="dashboard.html">Biblioteca Escolar</a></li>
                                 <li class="breadcrumb-item"><a
                                         style="text-decoration: none !important; color: rgb(99, 99, 99); font-size: 12px; margin-left: 2%;" 
-                                        href="Alunos.html">&nbsp> Alunos</a></li>
+                                        href="aluno.html">&nbsp> Alunos</a></li>
                             </div>
                         </div>
 
@@ -105,7 +111,7 @@
                             <button type="button" class="button blue mobile" id="cadastrarAluno">Cadastrar Novo Aluno</button>
                         </div>  
                         </br> 
-                           
+
                             <table id="tableAluno" class="records">
                                 <thead>
                                     <tr>
@@ -119,10 +125,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                               
+
                                 </tbody>
                             </table>
-                       
+
                             <div class="modal" id="modal2">
                                 <div class="modal-content">
                                     <header class="modal-header">
@@ -130,7 +136,7 @@
                                         <span class="modal-close" id="modalClose2">&#10006;</span>
                                     </header>
                                     <div id='avisoDelete'>
-                                       
+
                                     </div>
                                     <footer class="modal-footer">
                                         <button id="apagar" class="button red">Apagar</button>
@@ -138,8 +144,8 @@
                                     </footer>
                                 </div>
                             </div>
-                    
-                            
+
+
                             <div class="modal" id="modal">
                                 <div class="modal-content">
                                     <header class="modal-header">
@@ -159,7 +165,7 @@
                                         <input type="text" id="estado" class="modal-field" placeholder="Estado do Aluno" required>
                                         <input type="text" id="curso" data-index="new" class="modal-field" placeholder="Curso do Aluno" required>
                                         <input type="number" id="serie" class="modal-field" placeholder="Série do Aluno" required>
-                                        
+
                                     </form>
                                     <footer class="modal-footer">
                                         <button id="salvar" class="button green">Salvar</button>
@@ -167,5 +173,6 @@
                                     </footer>
                                 </div>
                             </div>
+                            <script src="../js/aluno.js"></script>
 </body>
 </html>
