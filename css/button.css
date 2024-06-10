@@ -3,7 +3,7 @@
     border-radius: 6px;
     height: 40px;
     padding: 6px 2px;
-    background-color: black;
+    background-color: rgb(10, 93, 201);
     color: white;
     font-size: 1rem;
     cursor: pointer;
@@ -14,14 +14,14 @@
     background-color: #159fe4;
 }
 
-button.green{
+button.blue{
     background-color: #074cb3;
 }
-button.greenb{
-    background-color: rgb(0, 40, 170);
+button.blue{
+    background-color: rgb(255, 73, 21);
 }
 button.red{
-    background-color: #FF4949;
+    background-color: rgb(255, 73, 73);
 }
 
 .button:hover{
